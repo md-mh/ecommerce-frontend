@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Theme from "./Theme";
 
 export default function Header() {
   return (
@@ -10,6 +11,10 @@ export default function Header() {
           <Link href="/" className="text-2xl font-bold text-(--primary)">
             Saimon Store
           </Link>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Theme />
         </div>
       </div>
     </header>
