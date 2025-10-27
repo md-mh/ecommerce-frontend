@@ -1,4 +1,7 @@
 import { Metadata } from "next";
+import { getServerData } from "@/utils/get";
+import { ProductType } from "@/types/Products";
+import ProductsView from "@/components/home/ProductsView";
 
 export const metadata: Metadata = {
   title: "Home - Saimon Store",
@@ -6,5 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  return <div>Home</div>;
+  const products: ProductType[] = await getServerData("/products");
+  return <ProductsView products={products} />;
 }
