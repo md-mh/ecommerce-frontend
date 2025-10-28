@@ -24,6 +24,7 @@
   --sidebar: #f3f4fe;
   --sidebar-foreground: #14162d;
   --radius: 10px;
+  --star-color: #d1a000;
 }
 
 /* Dark mode overrides using .dark on body or parent */
@@ -49,6 +50,7 @@
   --sidebar: #282c44;
   --sidebar-foreground: #f3f4fe;
   --radius: 10px;
+  --star-color: #ffd700;
 }
 
 @layer base {
