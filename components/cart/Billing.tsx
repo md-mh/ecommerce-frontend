@@ -1,7 +1,23 @@
-import React from "react";
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { BillingFormValues, billingSchema } from "@/types/Billing";
 
 // The Billing component that displays the billing information form.
 function Billing() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BillingFormValues>({
+    resolver: zodResolver(billingSchema),
+  });
+
+  const onSubmit = (data: BillingFormValues) => {
+    console.log("Billing Info Submitted:", data);
+  };
+
   return (
     <>
       {/* Billing Information Column */}
@@ -9,18 +25,29 @@ function Billing() {
         <h2 className="text-2xl font-bold mb-4 text-(--foreground)">
           Billing Information
         </h2>
-        {/* Placeholder for billing info */}
-        <form className="space-y-4">
+        <form
+          className="space-y-4"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <div>
             <label className="block text-sm font-medium text-(--foreground)">
               Name
             </label>
             <input
               type="text"
-              className="mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30"
+              className={`mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30 ${
+                errors.name ? "border-(--destructive)" : ""
+              }`}
               placeholder="Full Name"
               autoComplete="name"
+              {...register("name")}
             />
+            {errors.name && (
+              <p className="text-(--destructive) text-xs mt-1">
+                {errors.name.message}
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium text-(--foreground)">
@@ -28,21 +55,55 @@ function Billing() {
             </label>
             <input
               type="email"
-              className="mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30"
+              className={`mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30 ${
+                errors.email ? "border-(--destructive)" : ""
+              }`}
               placeholder="Email Address"
               autoComplete="email"
+              {...register("email")}
             />
+            {errors.email && (
+              <p className="text-(--destructive) text-xs mt-1">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-(--foreground)">
+              Phone
+            </label>
+            <input
+              type="number"
+              className={`mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30 ${
+                errors.phone ? "border-(--destructive)" : ""
+              }`}
+              placeholder="Phone Number"
+              autoComplete="number"
+              {...register("phone")}
+            />
+            {errors.phone && (
+              <p className="text-(--destructive) text-xs mt-1">
+                {errors.phone.message}
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium text-(--foreground)">
               Address
             </label>
-            <input
-              type="text"
-              className="mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30"
+            <textarea
+              className={`mt-1 block w-full rounded-md border border-(--border) bg-(--background) py-2 px-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-(--primary)/30 ${
+                errors.address ? "border-(--destructive)" : ""
+              }`}
               placeholder="Street Address"
               autoComplete="street-address"
+              {...register("address")}
             />
+            {errors.address && (
+              <p className="text-(--destructive) text-xs mt-1">
+                {errors.address.message}
+              </p>
+            )}
           </div>
           <button
             type="submit"
