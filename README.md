@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- a short system design overview including setup instructions, architecture explanation, and time spent -->
 
-## Getting Started
+# This is a [Saimon Store](https://ecommerce-mdmh.vercel.app) project overview.
 
-First, run the development server:
+Live link: https://ecommerce-mdmh.vercel.app/
+A modern e-commerce frontend built with **Next.js**, **TypeScript**, **Redux Toolkit**, and **Tailwind CSS**, designed for performance, scalability, and clean architecture.
+
+---
+
+## Setup Instructions
+
+First, clone, install and run this project :
+
+```bash
+git clone https://github.com/md-mh/ecommerce-frontend.git
+```
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture Explanation
 
-## Learn More
+### **1. App Directory (`/app`)**
 
-To learn more about Next.js, take a look at the following resources:
+- Uses the **Next.js App Router** architecture.
+- Includes routing files:
+  - `page.tsx` – Main entry page
+  - `layout.tsx` – Root layout for global providers and UI wrappers
+  - `loading.tsx` – Loading state handling
+  - `error.tsx` and `not-found.tsx` – Error boundaries
+- Global styles managed in `globals.css`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### **2. Components (`/components`)**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Organized by feature for maintainability:
+  - `cart/`, `home/`, `layout/`, `productDetails/`, `shared/`
+- Each module contains reusable UI elements and feature-specific components.
 
-## Deploy on Vercel
+### **3. Hooks (`/hooks`)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Custom hooks for managing theme and UI state, e.g., `useTheme.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **4. Redux (`/redux`)**
+
+- **features/** – Contains Redux slices for specific app modules.
+- **rootReducer.ts** – Combines all reducers.
+- **store.ts** – Configures and exports Redux store.
+- **ReduxProvider.tsx** – Provides store context to the entire app.
+
+### **5. Types (`/types`)**
+
+- Centralized TypeScript definitions for entities such as:
+  - `Billing.ts`, `Cart.ts`, `Products.ts`, `Theme.ts`
+- Ensures consistent type safety across the project.
+
+### **6. Utils (`/utils`)**
+
+- Utility functions and constants:
+  - `apiUrl.ts` – API endpoint management.
+  - `get.ts` – Generic GET request handler for data fetching.
+
+---
+
+## Time Spent : 2 Days
