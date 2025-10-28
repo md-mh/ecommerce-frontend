@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ProductType } from "@/types/Products";
 import AddCart from "../shared/AddCart";
 import Link from "next/link";
+import Category from "../shared/Category";
+import Rating from "../shared/Rating";
 
 function ProductListItem({ product }: { product: ProductType }) {
   return (
@@ -22,15 +24,14 @@ function ProductListItem({ product }: { product: ProductType }) {
           </h2>
         </Link>
         <div className="flex flex-wrap items-center gap-3 mt-1">
-          <span className="bg-(--primary)/10 px-3 py-1 rounded text-(--primary) font-medium text-sm">
-            ${product.price}
-          </span>
-          <span className="bg-(--muted-foreground)/10 text-(--muted-foreground) text-xs font-mono px-2 py-0.5 rounded">
-            {product?.category}
-          </span>
+          <Category category={product.category} />
+          <Rating rate={product.rating?.rate} count={product.rating?.count} />
         </div>
       </div>
       <div className="ml-auto flex flex-col items-end">
+        <span className="bg-(--primary)/10 px-3 py-1 rounded text-(--primary) font-medium text-sm">
+          ${product.price}
+        </span>
         <AddCart product={product} />
       </div>
     </div>
