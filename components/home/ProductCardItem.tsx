@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ProductType } from "@/types/Products";
 import AddCart from "../shared/AddCart";
 import Link from "next/link";
+import Rating from "../shared/Rating";
+import Category from "../shared/Category";
 
 function ProductCardItem({ product }: { product: ProductType }) {
   return (
@@ -27,12 +29,13 @@ function ProductCardItem({ product }: { product: ProductType }) {
           </h2>
         </Link>
         <div className="flex flex-row items-center justify-between gap-2">
-          <span className="bg-(--primary)/10 text-(--primary) text-sm font-medium px-3 py-1 rounded">{`$${product.price}`}</span>
-          <span className="bg-(--muted-foreground)/10 text-(--muted-foreground) text-xs font-mono px-2 py-0.5 rounded">
-            {product.category}
-          </span>
+          <Category category={product.category} />
+          <Rating rate={product.rating?.rate} count={product.rating?.count} />
         </div>
-        <AddCart product={product} />
+        <div className="flex flex-row items-center justify-between gap-2">
+          <span className="bg-(--primary)/10 text-(--primary) text-sm font-medium px-3 py-1 rounded">{`$${product.price}`}</span>
+          <AddCart product={product} />
+        </div>
       </div>
     </div>
   );
