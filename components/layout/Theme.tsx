@@ -1,4 +1,5 @@
 import { useTheme } from "@/hooks/useTheme";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 // The Theme component that displays the theme switcher toggle button.
 export default function Theme() {
@@ -7,17 +8,12 @@ export default function Theme() {
     <div>
       <button
         onClick={toggleTheme}
-        className="p-2 rounded-md border border-border hover:bg-muted transition cursor-pointer"
-        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+        className="p-2 rounded-md border border-border hover:bg-muted transition cursor-pointer text-(--foreground)"
       >
         {theme === "light" ? (
-          <span role="img" aria-label="Switch to dark mode">
-            🌙
-          </span>
+          <MdDarkMode size={20} />
         ) : (
-          <span role="img" aria-label="Switch to light mode">
-            ☀️
-          </span>
+          <MdLightMode size={20} />
         )}
       </button>
     </div>
