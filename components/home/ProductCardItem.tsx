@@ -5,6 +5,7 @@ import Link from "next/link";
 import Rating from "../shared/Rating";
 import Category from "../shared/Category";
 
+// The Product Card Item component that displays the product card item.
 function ProductCardItem({ product }: { product: ProductType }) {
   return (
     <div className="flex flex-col bg-card rounded-lg shadow border border-border transition-colors duration-200">

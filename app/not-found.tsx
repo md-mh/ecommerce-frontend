@@ -1,6 +1,6 @@
 import Link from "next/link";
-import React from "react";
 
+// The Not Found page that displays the 404 error message.
 export default function NotFound() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#ECF0F0]">

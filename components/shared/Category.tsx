@@ -1,5 +1,4 @@
-import React from "react";
-
+// The Category component that displays the category of the product.
 const Category = ({ category }: { category: string }) => {
   return (
     <>

@@ -1,3 +1,4 @@
+// The Product Type interface that defines the product type.
 export interface ProductType {
   id: number;
   title: string;

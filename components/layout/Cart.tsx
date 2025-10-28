@@ -8,6 +8,7 @@ import type { IRootState } from "@/redux/rootReducer";
 import { removeFromCart, clearCart } from "@/redux/features/cartSlice";
 import { useRouter } from "next/navigation";
 
+// The Cart component that displays the cart items and total price in header.
 export default function Cart() {
   const [open, setOpen] = useState(false);
   const router = useRouter();

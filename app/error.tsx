@@ -2,6 +2,7 @@
 
 import GlobalError from "./global-error";
 
+// The Error page that displays the error message.
 export default function Error({
   error,
   reset,
@@ -9,9 +10,5 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  return (
-    <>
-      <GlobalError error={error} reset={reset} />
-    </>
-  );
+  return <GlobalError error={error} reset={reset} />;
 }

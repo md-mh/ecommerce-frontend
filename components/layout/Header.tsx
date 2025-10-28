@@ -4,6 +4,7 @@ import Link from "next/link";
 import Theme from "./Theme";
 import Cart from "./Cart";
 
+// The Header component that displays the header.
 export default function Header() {
   return (
     <header className="w-full bg-background border-b border-border shadow-sm">

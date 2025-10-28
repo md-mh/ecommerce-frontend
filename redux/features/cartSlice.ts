@@ -1,18 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductType } from "@/types/Products";
+import { CartState } from "@/types/Cart";
 
-interface CartItem extends ProductType {
-  quantity: number;
-}
-
-interface CartState {
-  items: CartItem[];
-}
-
+// The initial state of the cart.
 const initialState: CartState = {
   items: [],
 };
 
+// The cart slice that defines the cart actions.
 const cartSlice = createSlice({
   name: "cart",
   initialState,

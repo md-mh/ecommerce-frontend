@@ -17,4 +17,5 @@ const rootReducer = combineReducers({
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// The root reducer that combines the theme and cart reducers.
 export default persistedReducer;

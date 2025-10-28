@@ -7,6 +7,7 @@ import ProductListItem from "./ProductListItem";
 import { FaList } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
 
+// The Products View component that displays the products.
 function ProductsView({ products }: { products: ProductType[] }) {
   const [view, setView] = useState<"grid" | "list">("grid");
   const perPage = 10;
@@ -16,6 +17,7 @@ function ProductsView({ products }: { products: ProductType[] }) {
     [...products].slice(0, perPage)
   );
 
+  // The function to handle the sorting.
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
 
@@ -39,6 +41,7 @@ function ProductsView({ products }: { products: ProductType[] }) {
     }
   };
 
+  // The function to handle the show more button click.
   const handleShowMore = () =>
     setViewProducts([
       ...viewProducts,
