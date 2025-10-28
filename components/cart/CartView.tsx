@@ -45,7 +45,7 @@ function CartView() {
 
         <div className="w-full">
           {cartItems.length === 0 ? (
-            <div className="text-muted-foreground text-center mt-8">
+            <div className="text-muted-foreground text-center my-10">
               Your cart is empty.
             </div>
           ) : (
