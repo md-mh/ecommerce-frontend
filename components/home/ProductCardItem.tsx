@@ -32,6 +32,12 @@ function ProductCardItem({ product }: { product: ProductType }) {
             {product.category}
           </span>
         </div>
+        <span className="text-(--star-color) flex items-center text-sm font-medium">
+          ★ {product?.rating?.rate}
+          <span className="ml-1 text-(--muted-foreground)">
+            ({product?.rating?.count} ratings)
+          </span>
+        </span>
         <AddCart product={product} />
       </div>
     </div>
