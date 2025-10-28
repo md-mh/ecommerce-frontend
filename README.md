@@ -2,8 +2,8 @@
 
 # This is a [Saimon Store](https://ecommerce-mdmh.vercel.app) project overview.
 
--Live link: https://ecommerce-mdmh.vercel.app/
--A modern e-commerce frontend built with **Next.js**, **TypeScript**, **Redux Toolkit**, and **Tailwind CSS**, designed for performance, scalability, and clean architecture.
+- Live link: https://ecommerce-mdmh.vercel.app/
+- A modern e-commerce frontend built with **Next.js**, **TypeScript**, **Redux Toolkit**, and **Tailwind CSS**, designed for performance, scalability, and clean architecture.
 
 ---
 
