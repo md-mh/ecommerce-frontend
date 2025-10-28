@@ -2,8 +2,8 @@
 
 # This is a [Saimon Store](https://ecommerce-mdmh.vercel.app) project overview.
 
-Live link: https://ecommerce-mdmh.vercel.app/
-A modern e-commerce frontend built with **Next.js**, **TypeScript**, **Redux Toolkit**, and **Tailwind CSS**, designed for performance, scalability, and clean architecture.
+-Live link: https://ecommerce-mdmh.vercel.app/
+-A modern e-commerce frontend built with **Next.js**, **TypeScript**, **Redux Toolkit**, and **Tailwind CSS**, designed for performance, scalability, and clean architecture.
 
 ---
 
@@ -38,6 +38,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - `loading.tsx` – Loading state handling
   - `error.tsx` and `not-found.tsx` – Error boundaries
 - Global styles managed in `globals.css`.
+- (public) Folder are public user pages with layout.
 
 ### **2. Components (`/components`)**
 
