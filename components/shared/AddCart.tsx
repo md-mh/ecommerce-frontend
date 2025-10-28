@@ -2,7 +2,7 @@
 
 import { ProductType } from "@/types/Products";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/features/cartSlice";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 // The Add Cart component that displays the add to cart button.
 const AddCart = ({ product }: { product: ProductType }) => {

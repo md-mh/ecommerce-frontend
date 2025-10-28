@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTheme as setThemeAction } from "@/redux/features/themeSlice";
+import { setTheme as setThemeAction } from "@/redux/features/theme/themeSlice";
 import { IRootState } from "@/redux/rootReducer";
 
 // The useTheme hook that toggles the theme and updates the Redux store.
