@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Theme from "./Theme";
+import Cart from "./Cart";
 
 export default function Header() {
   return (
@@ -15,6 +16,7 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <Theme />
+          <Cart />
         </div>
       </div>
     </header>
