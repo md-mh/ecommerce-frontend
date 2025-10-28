@@ -3,9 +3,15 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { BillingFormValues, billingSchema } from "@/types/Billing";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { clearCart } from "@/redux/features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 // The Billing component that displays the billing information form.
 function Billing() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -16,6 +22,9 @@ function Billing() {
 
   const onSubmit = (data: BillingFormValues) => {
     console.log("Billing Info Submitted:", data);
+    dispatch(clearCart());
+    toast.success("Billing information submitted successfully");
+    router.push("/");
   };
 
   return (

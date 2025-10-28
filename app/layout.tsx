@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 import ReduxProvider from "@/redux/ReduxProvider";
+import { ToastContainer } from "react-toastify";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en" data-arp="" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} `}>
         <ReduxProvider>{children}</ReduxProvider>
+        <ToastContainer />
       </body>
     </html>
   );
