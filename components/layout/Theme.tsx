@@ -6,7 +6,7 @@ export default function Theme() {
     <div>
       <button
         onClick={toggleTheme}
-        className="p-2 rounded-md border border-border hover:bg-muted transition"
+        className="p-2 rounded-md border border-border hover:bg-muted transition cursor-pointer"
         aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
       >
         {theme === "light" ? (
