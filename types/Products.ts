@@ -11,3 +11,9 @@ export interface ProductType {
     count: number;
   };
 }
+
+export type SortType =
+  | "default"
+  | "rating"
+  | "price-low-to-high"
+  | "price-high-to-low";
