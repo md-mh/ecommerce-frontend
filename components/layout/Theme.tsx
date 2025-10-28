@@ -1,5 +1,6 @@
 import { useTheme } from "@/hooks/useTheme";
 
+// The Theme component that displays the theme switcher toggle button.
 export default function Theme() {
   const { theme, toggleTheme } = useTheme();
   return (

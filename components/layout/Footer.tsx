@@ -1,3 +1,4 @@
+// The Footer component that displays the footer.
 export default function Footer() {
   return (
     <footer className="w-full border-t border-border mt-10 bg-background">

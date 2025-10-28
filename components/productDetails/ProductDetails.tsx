@@ -4,8 +4,8 @@ import AddCart from "../shared/AddCart";
 import Rating from "../shared/Rating";
 import Category from "../shared/Category";
 
+// The Product Details component that displays the product details in single page.
 function ProductDetails({ product }: { product: ProductType }) {
-  console.log(product);
   return (
     <>
       <div className="container max-w-7xl mx-auto py-10 px-4">

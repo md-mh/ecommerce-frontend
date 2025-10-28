@@ -5,6 +5,7 @@ import Link from "next/link";
 import Category from "../shared/Category";
 import Rating from "../shared/Rating";
 
+// The Product List Item component that displays the product list item.
 function ProductListItem({ product }: { product: ProductType }) {
   return (
     <div className="flex items-center bg-(--card) rounded-lg shadow border border-(--border) p-4 mb-4 max-w-3xl mx-auto w-full transition-colors duration-200">

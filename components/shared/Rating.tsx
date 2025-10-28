@@ -1,5 +1,6 @@
 import { FaStar } from "react-icons/fa";
 
+// The Rating component that displays the rating of the product.
 const Rating = ({ rate, count }: { rate: number; count: number }) => {
   return (
     <>

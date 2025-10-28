@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import Theme from "./Theme";
+import Cart from "./Cart";
 
+// The Header component that displays the header.
 export default function Header() {
   return (
     <header className="w-full bg-background border-b border-border shadow-sm">
@@ -15,6 +17,7 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <Theme />
+          <Cart />
         </div>
       </div>
     </header>

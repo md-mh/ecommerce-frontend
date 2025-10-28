@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// The Root Layout that wraps the full application.
 export default function RootLayout({
   children,
 }: Readonly<{

@@ -1,10 +1,15 @@
 "use client";
 
 import { ProductType } from "@/types/Products";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cartSlice";
 
+// The Add Cart component that displays the add to cart button.
 const AddCart = ({ product }: { product: ProductType }) => {
+  const dispatch = useDispatch();
+
   const handleAddToCart = () => {
-    console.log(product);
+    dispatch(addToCart(product));
   };
 
   return (

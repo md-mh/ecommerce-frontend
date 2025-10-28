@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTheme as setThemeAction } from "@/redux/features/themeSlice";
 import { IRootState } from "@/redux/rootReducer";
 
+// The useTheme hook that toggles the theme and updates the Redux store.
 export function useTheme() {
   const dispatch = useDispatch();
   const theme = useSelector((state: IRootState) => state.theme.theme);
