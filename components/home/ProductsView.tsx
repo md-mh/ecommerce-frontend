@@ -101,9 +101,10 @@ function ProductsView({ products }: { products: ProductType[] }) {
               <option value="price-high-to-low">Price: High to Low</option>
             </select>
           </div>
+
           <button
             onClick={() => setView("grid")}
-            className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer
+            className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer hidden md:block
             ${
               view === "grid"
                 ? "bg-(--primary) text-(--primary-foreground) border-(--primary)"
@@ -115,7 +116,7 @@ function ProductsView({ products }: { products: ProductType[] }) {
           </button>
           <button
             onClick={() => setView("list")}
-            className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer
+            className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer hidden md:block
             ${
               view === "list"
                 ? "bg-(--primary) text-(--primary-foreground) border-(--primary)"
