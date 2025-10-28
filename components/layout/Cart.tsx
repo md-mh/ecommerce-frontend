@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { useSelector, useDispatch } from "react-redux";
 import type { IRootState } from "@/redux/rootReducer";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 // The Cart component that displays the cart items and total price in header.
 export default function Cart() {
+  const divRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -36,6 +37,22 @@ export default function Cart() {
     router.push("/cart");
     setOpen(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        divRef.current &&
+        !divRef.current.contains(event.target as Node & EventTarget)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+  }, [open]);
+
   return (
     <div className="relative">
       <button
@@ -52,7 +69,10 @@ export default function Cart() {
 
       {/* Cart Modal */}
       {open && (
-        <div className="absolute right-0 z-50 w-[370px] max-w-xs top-full border border-border rounded-lg shadow-2xl mt-2 bg-(--background)">
+        <div
+          ref={divRef}
+          className="absolute right-0 z-50 w-[370px] max-w-xs top-full border border-border rounded-lg shadow-2xl mt-2 bg-(--background)"
+        >
           <div className="bg-foreground flex flex-col animate-fade-in">
             <div className="flex-1 p-4 overflow-y-auto max-h-[60vh]">
               {cartItems.length === 0 ? (
