@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import type { IRootState } from "@/redux/rootReducer";
-import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
+import {
+  removeFromCart,
+  updateQuantity,
+} from "@/redux/features/cart/cartSlice";
 import Link from "next/link";
 
 // The Cart View component that displays the cart items and total price.

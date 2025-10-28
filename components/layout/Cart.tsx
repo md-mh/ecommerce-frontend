@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { useSelector, useDispatch } from "react-redux";
 import type { IRootState } from "@/redux/rootReducer";
-import { removeFromCart, clearCart } from "@/redux/features/cartSlice";
+import { removeFromCart, clearCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
 
 // The Cart component that displays the cart items and total price in header.

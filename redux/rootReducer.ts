@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import themeReducer from "./features/themeSlice";
-import cartReducer from "./features/cartSlice";
+import themeReducer from "./features/theme/themeSlice";
+import cartReducer from "./features/cart/cartSlice";
 
 export type IRootState = ReturnType<typeof rootReducer>;
 
