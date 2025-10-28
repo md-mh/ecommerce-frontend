@@ -41,7 +41,6 @@ export default function Cart() {
       <button
         className="relative p-2 rounded-md border border-border hover:bg-muted transition bg-card cursor-pointer"
         onClick={() => setOpen(!open)}
-        aria-label="Open cart"
       >
         <CiShoppingCart className="w-5 h-5 text-foreground" />
         {cartItems.length > 0 && (
@@ -90,7 +89,6 @@ export default function Cart() {
                           <button
                             type="button"
                             className="ml-2 text-(--destructive) hover:text-(--destructive)/80 text-xs cursor-pointer"
-                            aria-label={`Remove ${item.title} from cart`}
                             onClick={() => handleRemove(Number(item.id))}
                           >
                             Remove

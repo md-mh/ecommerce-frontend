@@ -4,17 +4,18 @@ import { ProductType } from "@/types/Products";
 import { useState } from "react";
 import ProductCardItem from "./ProductCardItem";
 import ProductListItem from "./ProductListItem";
-import { FaList } from "react-icons/fa";
+import { FaList, FaSearch } from "react-icons/fa";
 import { IoGrid } from "react-icons/io5";
 
 // The Products View component that displays the products.
 function ProductsView({ products }: { products: ProductType[] }) {
   const [view, setView] = useState<"grid" | "list">("grid");
   const perPage = 10;
-
-  const [filterProducts, setFilterProducts] = useState<ProductType[]>(products);
+  const [searchProducts, setSearchProducts] = useState<ProductType[]>(products);
+  const [filterProducts, setFilterProducts] =
+    useState<ProductType[]>(searchProducts);
   const [viewProducts, setViewProducts] = useState<ProductType[]>(
-    [...products].slice(0, perPage)
+    [...searchProducts].slice(0, perPage)
   );
 
   // The function to handle the sorting.
@@ -22,22 +23,26 @@ function ProductsView({ products }: { products: ProductType[] }) {
     const value = e.target.value;
 
     if (value === "rating") {
-      const sortedProducts = [...products].sort(
+      const sortedProducts = [...searchProducts].sort(
         (a, b) => b.rating?.rate - a.rating?.rate
       );
       setFilterProducts(sortedProducts);
       setViewProducts([...sortedProducts].slice(0, perPage));
     } else if (value === "price-low-to-high") {
-      const sortedProducts = [...products].sort((a, b) => a.price - b.price);
+      const sortedProducts = [...searchProducts].sort(
+        (a, b) => a.price - b.price
+      );
       setFilterProducts(sortedProducts);
       setViewProducts([...sortedProducts].slice(0, perPage));
     } else if (value === "price-high-to-low") {
-      const sortedProducts = [...products].sort((a, b) => b.price - a.price);
+      const sortedProducts = [...searchProducts].sort(
+        (a, b) => b.price - a.price
+      );
       setFilterProducts(sortedProducts);
       setViewProducts([...sortedProducts].slice(0, perPage));
     } else {
-      setFilterProducts(products);
-      setViewProducts([...products].slice(0, perPage));
+      setFilterProducts(searchProducts);
+      setViewProducts([...searchProducts].slice(0, perPage));
     }
   };
 
@@ -51,45 +56,76 @@ function ProductsView({ products }: { products: ProductType[] }) {
       ),
     ]);
 
+  // The function to handle the search.
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    const searchData: ProductType[] = [...products].filter((product) =>
+      product.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setSearchProducts(searchData);
+    setViewProducts(searchData.slice(0, perPage));
+    setFilterProducts(searchData);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 transition-colors duration-200">
-      <div className="flex justify-end mb-6 mt-8 space-x-3">
-        <button
-          onClick={() => setView("grid")}
-          className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer
+      <div className="flex justify-between items-center gap-2">
+        <div>
+          <h1 className="text-3xl font-bold text-(--foreground)">Products</h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search products"
+              className="w-full p-2 rounded border font-medium transition-colors duration-200 bg-(--background) text-(--foreground) border-(--border) focus:outline-none focus:ring-2 focus:ring-(--primary)/30"
+              onChange={handleSearch}
+            />
+            <FaSearch
+              size={20}
+              className="text-(--foreground) absolute right-2 top-1/2 -translate-y-1/2"
+            />
+          </div>
+        </div>
+        <div className="flex justify-end mb-6 mt-8 space-x-3">
+          <div className="flex items-center gap-2">
+            <p className="text-(--foreground)">Sort by:</p>
+            <select
+              className="p-2 rounded border font-medium transition-colors duration-200 cursor-pointer bg-(--background) text-(--foreground) border-(--border)"
+              onChange={handleSortChange}
+            >
+              <option value="default">Default</option>
+              <option value="rating">Rating</option>
+              <option value="price-low-to-high">Price: Low to High</option>
+              <option value="price-high-to-low">Price: High to Low</option>
+            </select>
+          </div>
+          <button
+            onClick={() => setView("grid")}
+            className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer
             ${
               view === "grid"
                 ? "bg-(--primary) text-(--primary-foreground) border-(--primary)"
                 : "bg-(--accent) border-(--border) hover:bg-(--secondary)"
             }
           `}
-          aria-label="Grid view"
-        >
-          <IoGrid size={20} />
-        </button>
-        <button
-          onClick={() => setView("list")}
-          className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer
+          >
+            <IoGrid size={20} />
+          </button>
+          <button
+            onClick={() => setView("list")}
+            className={`p-2 rounded border font-medium transition-colors duration-200 cursor-pointer
             ${
               view === "list"
                 ? "bg-(--primary) text-(--primary-foreground) border-(--primary)"
                 : "bg-(--accent) border-(--border) hover:bg-(--secondary)"
             }
           `}
-          aria-label="List view"
-        >
-          <FaList size={20} />
-        </button>
-
-        <select
-          className="p-2 rounded border font-medium transition-colors duration-200 cursor-pointer bg-(--background) text-(--foreground) border-(--border)"
-          onChange={handleSortChange}
-        >
-          <option value="default">Default</option>
-          <option value="rating">Rating</option>
-          <option value="price-low-to-high">Price: Low to High</option>
-          <option value="price-high-to-low">Price: High to Low</option>
-        </select>
+          >
+            <FaList size={20} />
+          </button>
+        </div>
       </div>
 
       {view === "grid" ? (

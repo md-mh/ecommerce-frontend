@@ -90,7 +90,6 @@ function CartView() {
                         <button
                           type="button"
                           className="ml-2 text-(--destructive) hover:text-(--destructive)/80 text-base md:text-lg font-medium cursor-pointer"
-                          aria-label={`Remove ${item.title} from cart`}
                           onClick={() => handleRemove(Number(item.id))}
                         >
                           Remove
