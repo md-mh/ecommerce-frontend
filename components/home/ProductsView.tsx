@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductType } from "@/types/Products";
+import { ProductType, SortType } from "@/types/Products";
 import { useState } from "react";
 import ProductCardItem from "./ProductCardItem";
 import ProductListItem from "./ProductListItem";
@@ -11,6 +11,7 @@ import { IoGrid } from "react-icons/io5";
 function ProductsView({ products }: { products: ProductType[] }) {
   const [view, setView] = useState<"grid" | "list">("grid");
   const perPage = 10;
+  const [sort, setSort] = useState<SortType>("default");
   const [searchProducts, setSearchProducts] = useState<ProductType[]>(products);
   const [filterProducts, setFilterProducts] =
     useState<ProductType[]>(searchProducts);
@@ -19,8 +20,8 @@ function ProductsView({ products }: { products: ProductType[] }) {
   );
 
   // The function to handle the sorting.
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+  const handleSortChange = (value: SortType) => {
+    setSort(value);
 
     if (value === "rating") {
       const sortedProducts = [...searchProducts].sort(
@@ -46,6 +47,19 @@ function ProductsView({ products }: { products: ProductType[] }) {
     }
   };
 
+  // The function to handle the search.
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    const searchData: ProductType[] = [...products].filter((product) =>
+      product.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setSearchProducts(searchData);
+    setSort("default");
+    setFilterProducts(searchData);
+    setViewProducts([...searchData].slice(0, perPage));
+  };
+
   // The function to handle the show more button click.
   const handleShowMore = () =>
     setViewProducts([
@@ -56,25 +70,10 @@ function ProductsView({ products }: { products: ProductType[] }) {
       ),
     ]);
 
-  // The function to handle the search.
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    const searchData: ProductType[] = [...products].filter((product) =>
-      product.title.toLowerCase().includes(value.toLowerCase())
-    );
-    setSearchProducts(searchData);
-    setViewProducts(searchData.slice(0, perPage));
-    setFilterProducts(searchData);
-  };
-
   return (
     <div className="max-w-7xl mx-auto px-4 transition-colors duration-200">
-      <div className="flex justify-between items-center gap-2">
-        <div>
-          <h1 className="text-3xl font-bold text-(--foreground)">Products</h1>
-        </div>
-        <div className="flex items-center gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center mt-6 md:mt-0">
+        <div className="col-span-1">
           <div className="relative">
             <input
               type="text"
@@ -88,12 +87,13 @@ function ProductsView({ products }: { products: ProductType[] }) {
             />
           </div>
         </div>
-        <div className="flex justify-end mb-6 mt-8 space-x-3">
+        <div className="col-span-1 flex justify-end mb-6 mt-8 space-x-3">
           <div className="flex items-center gap-2">
             <p className="text-(--foreground)">Sort by:</p>
             <select
               className="p-2 rounded border font-medium transition-colors duration-200 cursor-pointer bg-(--background) text-(--foreground) border-(--border)"
-              onChange={handleSortChange}
+              onChange={(e) => handleSortChange(e.target.value as SortType)}
+              value={sort}
             >
               <option value="default">Default</option>
               <option value="rating">Rating</option>
@@ -143,7 +143,7 @@ function ProductsView({ products }: { products: ProductType[] }) {
       )}
       {viewProducts.length < filterProducts.length && (
         <button
-          className="w-1/5 mx-auto my-8 flex justify-center py-2 bg-(--primary) text-(--primary-foreground) font-semibold rounded hover:bg-(--primary)/90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="w-1/2 md:w-1/4 mx-auto my-8 flex justify-center py-2 bg-(--primary) text-(--primary-foreground) font-semibold rounded hover:bg-(--primary)/90 transition disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           onClick={handleShowMore}
         >
           Show More
