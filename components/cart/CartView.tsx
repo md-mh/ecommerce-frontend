@@ -68,7 +68,7 @@ function CartView() {
                       </div>
 
                       <div className="flex justify-between gap-2 items-center">
-                        <div className="text-sm lg:text-lg text-(--muted-foreground)">
+                        <div className="text-xs lg:text-lg text-(--muted-foreground)">
                           ${item.price.toFixed(2)}{" "}
                           <span className="mx-1 font-medium text-xl lg:text-2xl">
                             ×
@@ -83,13 +83,13 @@ function CartView() {
                           />
                         </div>
 
-                        <div className="font-semibold text-(--foreground) text-base lg:text-xl">
+                        <div className="font-semibold text-(--foreground) text-sm lg:text-xl">
                           ${(item.price * item.quantity).toFixed(2)}
                         </div>
 
                         <button
                           type="button"
-                          className="ml-2 text-(--destructive) hover:text-(--destructive)/80 text-sm lg:text-lg font-medium cursor-pointer"
+                          className="ml-2 text-(--destructive) hover:text-(--destructive)/80 text-xs lg:text-lg font-medium cursor-pointer"
                           onClick={() => handleRemove(Number(item.id))}
                         >
                           Remove
